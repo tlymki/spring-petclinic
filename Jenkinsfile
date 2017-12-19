@@ -1,6 +1,4 @@
-#!groovy
-
-pipeline {
+pipeline {
   agent none
   stages {
     stage('Maven Install') {
