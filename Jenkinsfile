@@ -22,7 +22,7 @@ pipeline {
     stage('Dcoker push to repo'){
       agent any
       steps {
-        withCredentials([usernamePassword(credentialsId: 'dcokerHub', passwordVariable: 'dcokerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push tlymki/spring-petclinic:latest'
         }
