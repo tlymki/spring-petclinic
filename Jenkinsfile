@@ -19,5 +19,14 @@ pipeline {
       sh 'docker build -t tlymki/spring-petclicnic:latest .'
       }
     }
+    stage('Dcoker push to repo'){
+      agent any
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'dcokerHub', passwordVariable: 'dcokerHubPassword', usernameVariable: 'dockerHubUser')]) {
+          sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+          sh 'docker push tlymki/spring-petclinic:latest'
+        }
+      }
+    }
   }
 }
